@@ -23,13 +23,13 @@ namespace WpfApp2
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<Employee> objCountryList;
+        List<Employee> objList;
 
 
         public MainWindow()
         {
             InitializeComponent();
-            objCountryList = new List<Employee>();
+            objList = new List<Employee>();
             BindCountryDropDown();
             AddElementsInList();
            
@@ -52,7 +52,7 @@ namespace WpfApp2
         private void BindCountryDropDown()
         {
             mo.Items.Clear();
-            mo.ItemsSource = objCountryList; 
+            mo.ItemsSource = objList; 
         }
         private void ddlCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -61,7 +61,7 @@ namespace WpfApp2
 
         private void ddlCountry_TextChanged(object sender, TextChangedEventArgs e)
         {
-            mo.ItemsSource = objCountryList.Where(x => x.Name.StartsWith(mo.Text.Trim()));
+            mo.ItemsSource = objList.Where(x => x.Name.StartsWith(mo.Text.Trim()));
         }
         private void AllCheckbocx_CheckedAndUnchecked(object sender, RoutedEventArgs e)
         {
@@ -84,7 +84,7 @@ namespace WpfApp2
                  obj = new Employee();
                 Console.WriteLine(sqlRd["FullName"].ToString()); 
                 obj.Name = sqlRd["FullName"].ToString();
-                objCountryList.Add(obj);
+                objList.Add(obj);
                  
             }
 
@@ -108,12 +108,12 @@ namespace WpfApp2
         {
             string emp = "";
 
-            foreach (var country in objCountryList)
+            foreach (var i in objList)
             {
-                if (country.Check_Status == true)
+                if (i.Check_Status == true)
                 {
 
-                    emp = emp + country.Name.Trim() + ","   ; 
+                    emp = emp + i.Name.Trim() + ","   ; 
                 }
             }
 
@@ -121,23 +121,28 @@ namespace WpfApp2
             Console.WriteLine(emp); 
 
             String a =  textBox.Text;
-            String b = date.SelectedDate.ToString(); 
+            String b = date.SelectedDate.Value.ToString("yyyy-MM-dd"); 
+            Console.WriteLine(b); 
             String c = mo.Text;
             String d = em.Text;
+            String client = textBox_Client.Text; 
+            foreach (var i in objList)
+            {
+                if (i.Check_Status == true)
+                {
+                    SqlCommand cmd = new SqlCommand("insert into Previsions values( @projet , @date, @Employee ,@nb_mois  , @client )", cnn);
 
-            
-            SqlCommand cmd = new SqlCommand("insert into Previsions values( @projet , @date, @Employee ,@nb_mois )", cnn);
-            
-            cmd.Parameters.AddWithValue("@projet",a);
-            cmd.Parameters.AddWithValue("@date", b);
-            cmd.Parameters.AddWithValue("@nb_mois",d);
-            cmd.Parameters.AddWithValue("@Employee",emp) ;
+                    cmd.Parameters.AddWithValue("@projet", a);
+                    cmd.Parameters.AddWithValue("@date", b);
+                    cmd.Parameters.AddWithValue("@nb_mois", d);
+                    cmd.Parameters.AddWithValue("@Employee", i.Name.Trim());
+                    cmd.Parameters.AddWithValue("@client", client);
 
-
-            cnn.Open(); 
-            cmd.ExecuteNonQuery(); 
-            cnn.Close() ;
-
+                    cnn.Open();
+                    cmd.ExecuteNonQuery();
+                    cnn.Close();
+                }
+            }
  
         }
 

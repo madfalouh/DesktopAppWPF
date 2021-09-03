@@ -69,8 +69,8 @@
     </Window.Resources>
     <Grid Background="White" Margin="3,2,-3.4,-2.4">
         <Button Content="X" HorizontalAlignment="Left" Margin="1215,-2,-1,0" VerticalAlignment="Top" Width="32" Height="28" Background="White" Foreground="#FF0C0C0C" Click="Button_Click" BorderBrush="#FF8612FF" Cursor="Hand" FontFamily="Calibri" FontSize="20"/>
-        <Label x:Name="debug" Content="Application's Name" HorizontalAlignment="Left" Margin="628,90,0,0" VerticalAlignment="Top" Width="535" Foreground="#FF1A1919" FontFamily="Calibri" FontSize="20" FontWeight="Bold"/>
-        <Label Content="Project Name&#xA;" HorizontalAlignment="Left" Margin="391,246,0,0" VerticalAlignment="Top" Foreground="#FF060606" FontFamily="Calibri" FontSize="30" Background="White"/>
+        <Label x:Name="debug" Content="Project Management" HorizontalAlignment="Left" Margin="628,90,0,0" VerticalAlignment="Top" Width="535" Foreground="#FF1A1919" FontFamily="Calibri" FontSize="20" FontWeight="Bold"/>
+        <Label Content="Project's Code&#xA;" HorizontalAlignment="Left" Margin="391,246,0,0" VerticalAlignment="Top" Foreground="#FF060606" FontFamily="Calibri" FontSize="30" Background="White"/>
         <Label Content="Start Date&#xA;&#xA;" HorizontalAlignment="Left" Margin="391,400,0,0" VerticalAlignment="Top" Foreground="#FF0F0F0F" FontFamily="Calibri" FontSize="30" Height="56" Background="White"/>
         <Label Content="Number of months
                " HorizontalAlignment="Left" Margin="769,394,0,0" VerticalAlignment="Top" Foreground="Black" FontFamily="Calibri" FontSize="30" Height="56" Background="White" Width="245"/>
@@ -101,6 +101,8 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <TextBox x:Name="em" HorizontalAlignment="Left" Height="33" Margin="1042,404,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" FontSize="20" TextChanged="em_TextChanged"    PreviewTextInput="NumberValidationTextBox"/>
+        <Label Content="Client" HorizontalAlignment="Left" Margin="806,535,0,0" VerticalAlignment="Top" Foreground="Black" FontFamily="Calibri" FontSize="30" Height="56" Background="White"/>
+        <TextBox x:Name="textBox_Client" HorizontalAlignment="Left" Height="30" Margin="914,544,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246" RenderTransformOrigin="0.5,0.5" FontSize="20" Foreground="#FF0B0B0B" Background="White"/>
 
     </Grid>
 </Window>
